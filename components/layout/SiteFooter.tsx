@@ -8,12 +8,6 @@ export function SiteFooter() {
       <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-2 lg:px-8">
         <div>
           <p className="font-semibold text-slate-900">{siteProfile.name}</p>
-          <p className="mt-2 max-w-md text-sm text-slate-600">
-            {siteProfile.headline}
-          </p>
-          <p className="mt-4 text-xs tracking-[0.2em] text-slate-500 uppercase">
-            {siteProfile.location}
-          </p>
         </div>
         <div className="grid grid-cols-2 gap-6 text-sm">
           <div>

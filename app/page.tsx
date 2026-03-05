@@ -39,21 +39,18 @@ export default async function HomePage() {
             <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600 sm:text-base">
               {siteProfile.summary}
             </p>
-            <p className="mt-4 max-w-3xl text-sm font-medium text-slate-800 sm:text-base">
-              My approach runs on three pillars:
-            </p>
-            <ul className="mt-2 max-w-3xl list-disc space-y-1 pl-5 text-sm leading-7 text-slate-700 sm:text-base">
+            <ul className="mt-4 max-w-3xl list-disc space-y-1 pl-5 text-sm leading-7 text-slate-700 sm:text-base">
               {siteProfile.focusAreas.map((area) => (
                 <li key={area.title}>
                   <span className="font-semibold text-slate-900">{area.title}:</span>{" "}
-                  {area.heroSummary}
+                  {area.summary}
                 </li>
               ))}
             </ul>
             <div className="mt-5 border-l-2 border-slate-300 pl-4">
               <p className="text-sm font-medium text-slate-800 sm:text-base">
                 I&apos;m not just studying the markets; I&apos;m building the
-                stack to navigate them with speed and conviction.
+                tools to navigate them.
               </p>
             </div>
           </div>
@@ -71,46 +68,6 @@ export default async function HomePage() {
           </figure>
         </section>
       </AnimatedReveal>
-
-      <section>
-        <SectionHeader eyebrow="Execution Layer" title="Focus Areas" />
-        <div className="grid gap-4 sm:grid-cols-2">
-          {siteProfile.focusAreas.map((area) => (
-            <div
-              key={area.title}
-              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
-            >
-              <h2 className="text-lg font-semibold text-slate-900">
-                {area.title}
-              </h2>
-              <p className="mt-2 text-sm text-slate-600">{area.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <SectionHeader eyebrow="Connect" title="Contact and Channels" />
-        <div className="flex flex-wrap gap-3">
-          {contactLinks.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              target={item.label === "Email" ? undefined : "_blank"}
-              rel={item.label === "Email" ? undefined : "noreferrer"}
-              className="inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-900 transition hover:border-slate-900"
-            >
-              {item.label}
-            </a>
-          ))}
-          <Link
-            href="/contact"
-            className="inline-flex items-center rounded-full border border-slate-900 bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
-          >
-            Full Contact Page
-          </Link>
-        </div>
-      </section>
 
       <section className="grid gap-6 lg:grid-cols-2">
         {latestWriting ? (
@@ -146,6 +103,29 @@ export default async function HomePage() {
             />
           </div>
         ) : null}
+      </section>
+
+      <section>
+        <SectionHeader eyebrow="Connect" title="Contact and Channels" />
+        <div className="flex flex-wrap gap-3">
+          {contactLinks.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              target={item.label === "Email" ? undefined : "_blank"}
+              rel={item.label === "Email" ? undefined : "noreferrer"}
+              className="inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-900 transition hover:border-slate-900"
+            >
+              {item.label}
+            </a>
+          ))}
+          <Link
+            href="/contact"
+            className="inline-flex items-center rounded-full border border-slate-900 bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
+          >
+            Full Contact Page
+          </Link>
+        </div>
       </section>
     </div>
   );

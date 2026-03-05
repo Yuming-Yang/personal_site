@@ -24,8 +24,7 @@ export interface SiteProfile {
   socialLinks: Array<{ label: string; href: string }>;
   focusAreas: Array<{
     title: string;
-    heroSummary: string;
-    description: string;
+    summary: string;
   }>;
 }
 
