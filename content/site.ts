@@ -4,7 +4,7 @@ export const siteProfile: SiteProfile = {
   name: "Yuming Yang",
   headline: "Building the architecture for the new macro regime.",
   summary:
-    "I view markets as complex systems governed by incentives and technological friction. Trained in Mathematics and Economics at Peking University and currently pursuing a Master of Science in Financial Economics at Columbia Business School, my focus is on the how: designing research processes that scale beyond intuition.",
+    'I view markets as complex systems governed by incentives and technological friction. Trained in Mathematics and Economics at Peking University and currently pursuing a Master of Science in Financial Economics at Columbia Business School, my focus is on the "how" - designing research processes that scale beyond intuition.',
   location: "Shanghai",
   email: "YYang26@gsb.columbia.edu",
   socialLinks: [
@@ -32,7 +32,7 @@ export const siteProfile: SiteProfile = {
     {
       title: "AI Engineering",
       description:
-        "I do not just follow AI. I build with it. I engineer custom tools and automated workflows to turn high-velocity, high-entropy data into structured, testable ideas.",
+        "I don't just follow AI - I build with it. I engineer custom tools and automated workflows to turn high-velocity, high-entropy data into structured, testable ideas.",
     },
   ],
 };

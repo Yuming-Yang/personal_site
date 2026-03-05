@@ -30,9 +30,6 @@ export default async function HomePage() {
       <AnimatedReveal>
         <section className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-start">
           <div className="rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-sm sm:p-8">
-            <p className="font-mono text-xs uppercase tracking-[0.14em] text-slate-500">
-              Home
-            </p>
             <h1 className="max-w-4xl text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
               {siteProfile.name}
             </h1>
@@ -42,31 +39,22 @@ export default async function HomePage() {
             <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">
               {siteProfile.summary}
             </p>
-            <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50/80 p-4">
-              <p className="font-mono text-xs uppercase tracking-[0.12em] text-slate-500">
-                Three Pillars
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {siteProfile.focusAreas.map((area, index) => (
-                  <span
-                    key={area.title}
-                    className="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-700"
-                  >
-                    {index + 1}. {area.title}
-                  </span>
-                ))}
-              </div>
-            </div>
+            <p className="mt-4 max-w-3xl text-sm font-medium text-slate-800 sm:text-base">
+              My approach is built on three pillars:
+            </p>
+            <ul className="mt-3 max-w-3xl space-y-2 text-sm leading-relaxed text-slate-600 sm:text-base">
+              {siteProfile.focusAreas.map((area) => (
+                <li key={area.title}>
+                  <span className="font-semibold text-slate-900">{area.title}:</span>{" "}
+                  {area.description}
+                </li>
+              ))}
+            </ul>
             <div className="mt-5 border-l-2 border-slate-300 pl-4">
               <p className="text-sm font-medium text-slate-800 sm:text-base">
                 I&apos;m not just studying the markets; I&apos;m building the
                 tools to navigate them.
               </p>
-            </div>
-            <div className="mt-5 flex flex-wrap gap-2">
-              <span className="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-700">
-                Based in {siteProfile.location}
-              </span>
             </div>
           </div>
           <figure className="mx-auto w-full max-w-[300px] rounded-3xl border border-slate-200 bg-white/90 p-3 shadow-sm">
