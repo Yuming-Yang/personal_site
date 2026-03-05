@@ -5,7 +5,7 @@ Original profile/favicons from `Github/Yuming-Yang.github.io/images/` are not cu
 - TODO: restore/copy original `avatar.PNG` and `profile.png`
 - TODO: restore/copy original favicon PNG/ICO files
 
-Temporary fallbacks are used in this v2 app:
+Current assets in use:
 
-- `profile-fallback.svg`
+- `avatar.png`
 - `/favicon.svg`

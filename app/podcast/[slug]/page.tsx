@@ -53,7 +53,6 @@ export default async function PodcastDetailPage({
       <SectionHeader
         eyebrow="Podcast Episode"
         title={entry.title}
-        subtitle={entry.excerpt}
       />
       <p className="font-mono text-sm text-slate-500">
         {new Date(entry.date).toLocaleDateString("en-US", {

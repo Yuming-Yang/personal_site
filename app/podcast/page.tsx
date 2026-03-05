@@ -18,8 +18,8 @@ export default async function PodcastPage() {
     <div className="space-y-10">
       <SectionHeader
         eyebrow="Podcast"
-        title="Conversations and Reflections"
-        subtitle="Audio notes covering financial markets, crypto, and selected personal observations."
+        title="Reflections and Conversations"
+        subtitle="Audio notes covering personal observations, financial markets and technology."
       />
 
       <section className="grid gap-5 md:grid-cols-2">
@@ -32,6 +32,7 @@ export default async function PodcastPage() {
             date={entry.date}
             tags={entry.tags}
             meta={entry.readTime}
+            ctaLabel="Listen now"
           />
         ))}
       </section>

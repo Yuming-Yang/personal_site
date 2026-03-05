@@ -20,7 +20,7 @@ export default async function WritingPage() {
       <SectionHeader
         eyebrow="Writing"
         title="Essays and Notes"
-        subtitle="Perspectives on macro investing, digital assets, and quantitative strategy design."
+        subtitle="Perspectives on Macro Investing, Quantitative Investing, Crypto and AI."
       />
 
       <section className="grid gap-5 md:grid-cols-2">

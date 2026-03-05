@@ -39,8 +39,8 @@ export default async function HomePage() {
           </div>
           <div className="mx-auto w-full max-w-[260px]">
             <Image
-              src="/images/profile-fallback.svg"
-              alt="Profile image placeholder for Yuming Yang"
+              src="/images/avatar.png"
+              alt="Portrait of Yuming Yang"
               width={260}
               height={260}
               className="rounded-2xl border border-slate-200 bg-slate-50 object-cover shadow-sm"
@@ -53,7 +53,7 @@ export default async function HomePage() {
       <section>
         <SectionHeader
           eyebrow="Current Focus"
-          title="Current Focus Areas of Work"
+          title="Focus Areas"
         />
         <div className="grid gap-4 sm:grid-cols-2">
           {siteProfile.focusAreas.map((area) => (
@@ -98,7 +98,7 @@ export default async function HomePage() {
           <div>
             <SectionHeader
               eyebrow="Latest Writing"
-              title="Recent Market Essay"
+              title="Recent Essays"
             />
             <ContentCard
               href={`/writing/${latestWriting.slug}`}
@@ -121,6 +121,7 @@ export default async function HomePage() {
               date={latestEpisode.date}
               tags={latestEpisode.tags}
               meta={latestEpisode.readTime}
+              ctaLabel="Listen now"
             />
           </div>
         ) : null}
