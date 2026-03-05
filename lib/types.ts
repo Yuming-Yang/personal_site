@@ -49,5 +49,9 @@ export interface ResearchItem {
   date: string;
   abstract: string;
   links: Array<{ label: string; href: string }>;
-  status: "published" | "under-review" | "placeholder";
+  status:
+    | "published"
+    | "under-review"
+    | "research assistant"
+    | "placeholder";
 }

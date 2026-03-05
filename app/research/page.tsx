@@ -18,7 +18,7 @@ export default function ResearchPage() {
       <SectionHeader
         eyebrow="Research"
         title="Research"
-        subtitle="Selected research projects from Wharton, UChicago Booth, and Peking University."
+        subtitle="selected finance research projects"
       />
 
       <section className="grid gap-5">
