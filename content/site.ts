@@ -44,7 +44,6 @@ export const siteProfile: SiteProfile = {
 
 export const primaryNav: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
   { label: "Projects", href: "/projects" },
   { label: "Writing", href: "/writing" },
   { label: "Podcast", href: "/podcast" },

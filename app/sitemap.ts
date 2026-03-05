@@ -7,7 +7,6 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://yumingyang.com";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
     "",
-    "/about",
     "/projects",
     "/writing",
     "/podcast",

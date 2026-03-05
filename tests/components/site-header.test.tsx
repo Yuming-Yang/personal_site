@@ -19,7 +19,6 @@ describe("SiteHeader", () => {
     render(<SiteHeader />);
 
     expect(screen.getByText("Yuming Yang")).toBeInTheDocument();
-    expect(screen.getByText("About")).toBeInTheDocument();
     expect(screen.getByText("Projects")).toBeInTheDocument();
     expect(screen.getByText("Writing")).toBeInTheDocument();
   });

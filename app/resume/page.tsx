@@ -15,8 +15,7 @@ export default function ResumePage() {
     <div className="space-y-10">
       <SectionHeader
         eyebrow="Resume"
-        title="Curriculum Vitae"
-        subtitle="Structured profile based on currently available public information."
+        title="Resume"
       />
 
       <Card>
@@ -62,15 +61,10 @@ export default function ResumePage() {
           </p>
           <p>
             TODO: confirm technical stack and research methods to include in
-            final CV.
+            final resume.
           </p>
         </CardContent>
       </Card>
-
-      <p className="text-sm text-slate-500">
-        PLACEHOLDER: add `/public/resume.pdf` and link it here if a PDF CV is
-        available.
-      </p>
     </div>
   );
 }
