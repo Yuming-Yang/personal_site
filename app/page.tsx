@@ -107,6 +107,7 @@ export default async function HomePage() {
               date={latestWriting.date}
               tags={latestWriting.tags}
               meta={latestWriting.readTime}
+              ctaHref="/writing"
             />
           </div>
         ) : null}
@@ -121,7 +122,8 @@ export default async function HomePage() {
               date={latestEpisode.date}
               tags={latestEpisode.tags}
               meta={latestEpisode.readTime}
-              ctaLabel="Listen now"
+              ctaLabel="More episodes"
+              ctaHref="/podcast"
             />
           </div>
         ) : null}

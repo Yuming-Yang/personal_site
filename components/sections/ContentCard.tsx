@@ -18,6 +18,7 @@ export function ContentCard({
   tags,
   meta,
   ctaLabel = "Read more",
+  ctaHref,
 }: {
   href: string;
   title: string;
@@ -26,6 +27,7 @@ export function ContentCard({
   tags: string[];
   meta?: string;
   ctaLabel?: string;
+  ctaHref?: string;
 }) {
   return (
     <Card className="h-full transition hover:-translate-y-0.5 hover:shadow-md">
@@ -58,7 +60,7 @@ export function ContentCard({
           ))}
         </div>
         <Link
-          href={href}
+          href={ctaHref ?? href}
           className="inline-flex items-center gap-1 text-sm font-medium text-slate-700 hover:text-slate-900"
         >
           {ctaLabel}
