@@ -53,5 +53,7 @@ export interface ResearchItem {
     | "published"
     | "under-review"
     | "research assistant"
+    | "Research Assistant"
+    | "Undergraduate Researcher"
     | "placeholder";
 }
