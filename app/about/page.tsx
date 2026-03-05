@@ -16,7 +16,7 @@ export default function AboutPage() {
     <div className="space-y-10">
       <SectionHeader
         eyebrow="About"
-        title="Macro, Crypto, and Quantitative Finance"
+        title="Quantitative Finance, AI, Crypto, and Macro Investing"
         subtitle="I focus on understanding complex market dynamics through rigorous, data-driven analysis."
       />
 

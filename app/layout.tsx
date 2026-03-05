@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     template: "%s | Yuming Yang",
   },
   description:
-    "Finance professional focused on macro investing, crypto research, and quantitative finance. Personal website for writing, projects, and research updates.",
+    "Personal website of Yuming Yang, M.S. candidate in Financial Economics at Columbia Business School.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "Yuming Yang | Personal Website",
     description:
-      "Finance professional focused on macro investing, crypto research, and quantitative finance.",
+      "Personal website of Yuming Yang, M.S. candidate in Financial Economics at Columbia Business School.",
     url: "/",
     siteName: "Yuming Yang",
     type: "website",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Yuming Yang | Personal Website",
     description:
-      "Finance professional focused on macro investing, crypto research, and quantitative finance.",
+      "Personal website of Yuming Yang, M.S. candidate in Financial Economics at Columbia Business School.",
     images: ["/og-default.svg"],
   },
   icons: {

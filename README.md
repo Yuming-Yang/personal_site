@@ -39,7 +39,14 @@ Create `.env.local` with:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://yumingyang.com
+WRITING_RSS_FEED_URL=https://alanyang0.substack.com/feed
+PODCAST_RSS_FEED_URL=https://your-podcast-rss-feed.xml
 ```
+
+Notes:
+- `WRITING_RSS_FEED_URL` defaults to your Substack feed if omitted.
+- `PODCAST_RSS_FEED_URL` should be your Spotify podcast RSS feed URL.
+- If a feed is unavailable, the app falls back to local markdown content.
 
 ## Quality Checks
 
@@ -61,6 +68,8 @@ npm run build
    - Output directory: default (Next.js)
 5. Add environment variable:
    - `NEXT_PUBLIC_SITE_URL=https://yumingyang.com`
+   - `WRITING_RSS_FEED_URL=https://alanyang0.substack.com/feed`
+   - `PODCAST_RSS_FEED_URL=<your-podcast-rss-feed>`
 6. Deploy to preview.
 7. Add custom domains in Vercel:
    - `yumingyang.com`

@@ -8,8 +8,9 @@ import { SectionHeader } from "@/components/sections/SectionHeader";
 import { getAllEpisodes, getEpisodeBySlug } from "@/lib/content";
 import { buildPageMetadata } from "@/lib/seo";
 
-export function generateStaticParams() {
-  return getAllEpisodes().map((entry) => ({ slug: entry.slug }));
+export async function generateStaticParams() {
+  const episodes = await getAllEpisodes();
+  return episodes.map((entry) => ({ slug: entry.slug }));
 }
 
 export async function generateMetadata({
@@ -18,7 +19,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const entry = getEpisodeBySlug(slug);
+  const entry = await getEpisodeBySlug(slug);
 
   if (!entry) {
     return buildPageMetadata({
@@ -41,7 +42,7 @@ export default async function PodcastDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const entry = getEpisodeBySlug(slug);
+  const entry = await getEpisodeBySlug(slug);
 
   if (!entry) {
     notFound();

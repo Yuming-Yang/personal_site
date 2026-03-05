@@ -11,8 +11,8 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/podcast",
 });
 
-export default function PodcastPage() {
-  const episodes = getAllEpisodes();
+export default async function PodcastPage() {
+  const episodes = await getAllEpisodes();
 
   return (
     <div className="space-y-10">

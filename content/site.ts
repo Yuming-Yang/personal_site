@@ -2,10 +2,9 @@ import { NavItem, SiteProfile } from "@/lib/types";
 
 export const siteProfile: SiteProfile = {
   name: "Yuming Yang",
-  headline:
-    "Finance professional focused on macro investing, crypto research, and quantitative finance",
+  headline: "M.S. candidate in Financial Economics at Columbia Business School",
   summary:
-    "I am currently pursuing an M.S. in Financial Economics at Columbia Business School after completing dual B.S. degrees in Mathematics and Economics at Peking University.",
+    "Currently pursuing an M.S. in Financial Economics at Columbia Business School after completing dual B.S. degrees in Mathematics and Economics at Peking University, and graduated from Shanghai High School.",
   location: "Shanghai",
   email: "YYang26@gsb.columbia.edu",
   socialLinks: [
@@ -21,24 +20,24 @@ export const siteProfile: SiteProfile = {
   ],
   focusAreas: [
     {
-      title: "Crypto",
-      description:
-        "Research and analysis of cryptocurrency markets and blockchain technology.",
-    },
-    {
-      title: "Macro Economics",
-      description:
-        "Global economic trends and their implications for investment strategy.",
-    },
-    {
       title: "Quantitative Finance",
       description:
-        "Systematic approaches, risk frameworks, and market data interpretation.",
+        "Systematic research, data analysis, and model-driven investment frameworks.",
     },
     {
-      title: "Market Research",
+      title: "AI",
       description:
-        "Data-driven insights across traditional and alternative asset classes.",
+        "Applying AI methods to financial research workflows and decision support.",
+    },
+    {
+      title: "Crypto",
+      description:
+        "Market structure research and on-chain analysis across digital assets.",
+    },
+    {
+      title: "Macro Investing",
+      description:
+        "Top-down investment perspectives informed by global economic regimes.",
     },
   ],
 };

@@ -12,8 +12,8 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/writing",
 });
 
-export default function WritingPage() {
-  const writing = getAllWriting();
+export default async function WritingPage() {
+  const writing = await getAllWriting();
 
   return (
     <div className="space-y-10">
