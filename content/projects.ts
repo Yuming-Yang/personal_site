@@ -11,22 +11,23 @@ export const projects: ProjectItem[] = [
     status: "live",
   },
   {
-    title: "PLACEHOLDER: Additional Quant Research Project",
-    summary: "TODO: confirm project title, objective, and measurable outcomes.",
-    tags: ["PLACEHOLDER"],
-    links: [],
-    featured: false,
-    status: "placeholder",
-    notes: "TODO: add public link or private summary.",
-  },
-  {
-    title: "PLACEHOLDER: Market Strategy Tool",
+    title: "FactorModeling",
     summary:
-      "TODO: confirm whether this project should be public and add a factual description.",
-    tags: ["PLACEHOLDER"],
-    links: [],
+      "A quantitative equity factor research framework in Python with reusable factor operators, rolling factor selection (ICIR, momentum, and MVO), composite-factor construction, and long/short portfolio simulation with turnover and transaction-cost controls.",
+    tags: ["Python", "Pandas", "NumPy", "CVXPY", "Statsmodels", "Jupyter"],
+    links: [
+      {
+        label: "Repository",
+        href: "https://github.com/Yuming-Yang/FactorModeling",
+      },
+      {
+        label: "Pipeline Notebook",
+        href: "https://github.com/Yuming-Yang/FactorModeling/blob/main/pipeline.ipynb",
+      },
+    ],
     featured: false,
-    status: "placeholder",
-    notes: "PLACEHOLDER: add stack, timeframe, and role.",
+    status: "live",
+    notes:
+      "Includes multi-manager backtesting and a performance analyzer for annualized return, drawdown, Sharpe/Sortino, turnover, and leg attribution.",
   },
 ];
