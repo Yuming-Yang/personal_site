@@ -2,9 +2,9 @@ import { NavItem, SiteProfile } from "@/lib/types";
 
 export const siteProfile: SiteProfile = {
   name: "Yuming Yang",
-  headline: "M.S. candidate in Financial Economics at Columbia Business School",
+  headline: "Building the architecture for the new macro regime.",
   summary:
-    "Currently pursuing an M.S. in Financial Economics at Columbia Business School after completing dual B.S. degrees in Mathematics and Economics at Peking University, and graduated from Shanghai High School.",
+    "I view markets as complex systems governed by incentives and technological friction. Trained in Mathematics and Economics at Peking University and currently pursuing a Master of Science in Financial Economics at Columbia Business School, my focus is on the how: designing research processes that scale beyond intuition.",
   location: "Shanghai",
   email: "YYang26@gsb.columbia.edu",
   socialLinks: [
@@ -20,24 +20,19 @@ export const siteProfile: SiteProfile = {
   ],
   focusAreas: [
     {
-      title: "Quantitative Finance",
+      title: "Global Macro & Systematic Modeling",
       description:
-        "Systematic research, data analysis, and model-driven investment frameworks.",
+        "I build frameworks to decode the world’s economic architecture. By bridging discretionary macro thinking with data-driven modeling, I develop investment strategies that operate with the rigor of a global macro fund.",
     },
     {
-      title: "AI",
+      title: "Digital Asset Research",
       description:
-        "Applying AI methods to financial research workflows and decision support.",
+        "I deep-dive into the crypto frontier, leveraging on-chain analytics and protocol-level research to find signal in decentralized markets.",
     },
     {
-      title: "Crypto",
+      title: "AI Engineering",
       description:
-        "Market structure research and on-chain analysis across digital assets.",
-    },
-    {
-      title: "Macro Investing",
-      description:
-        "Top-down investment perspectives informed by global economic regimes.",
+        "I do not just follow AI. I build with it. I engineer custom tools and automated workflows to turn high-velocity, high-entropy data into structured, testable ideas.",
     },
   ],
 };
