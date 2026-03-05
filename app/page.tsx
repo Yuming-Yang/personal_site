@@ -69,7 +69,7 @@ export default async function HomePage() {
         </section>
       </AnimatedReveal>
 
-      <section className="grid gap-6 lg:grid-cols-2">
+      <section className="grid gap-6 lg:grid-cols-2 lg:items-start">
         {latestWriting ? (
           <div>
             <SectionHeader
