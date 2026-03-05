@@ -22,7 +22,11 @@ export interface SiteProfile {
   location: string;
   email: string;
   socialLinks: Array<{ label: string; href: string }>;
-  focusAreas: Array<{ title: string; description: string }>;
+  focusAreas: Array<{
+    title: string;
+    heroSummary: string;
+    description: string;
+  }>;
 }
 
 export interface NavItem {

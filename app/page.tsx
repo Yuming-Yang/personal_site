@@ -36,24 +36,24 @@ export default async function HomePage() {
             <p className="mt-3 max-w-3xl text-xl leading-snug font-medium text-slate-900 sm:text-2xl">
               {siteProfile.headline}
             </p>
-            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600 sm:text-base">
               {siteProfile.summary}
             </p>
             <p className="mt-4 max-w-3xl text-sm font-medium text-slate-800 sm:text-base">
-              My approach is built on three pillars:
+              My approach runs on three pillars:
             </p>
-            <ul className="mt-3 max-w-3xl space-y-2 text-sm leading-relaxed text-slate-600 sm:text-base">
+            <ul className="mt-2 max-w-3xl list-disc space-y-1 pl-5 text-sm leading-7 text-slate-700 sm:text-base">
               {siteProfile.focusAreas.map((area) => (
                 <li key={area.title}>
                   <span className="font-semibold text-slate-900">{area.title}:</span>{" "}
-                  {area.description}
+                  {area.heroSummary}
                 </li>
               ))}
             </ul>
             <div className="mt-5 border-l-2 border-slate-300 pl-4">
               <p className="text-sm font-medium text-slate-800 sm:text-base">
                 I&apos;m not just studying the markets; I&apos;m building the
-                tools to navigate them.
+                stack to navigate them with speed and conviction.
               </p>
             </div>
           </div>
@@ -73,10 +73,7 @@ export default async function HomePage() {
       </AnimatedReveal>
 
       <section>
-        <SectionHeader
-          eyebrow="Current Focus"
-          title="Focus Areas"
-        />
+        <SectionHeader eyebrow="Execution Layer" title="Focus Areas" />
         <div className="grid gap-4 sm:grid-cols-2">
           {siteProfile.focusAreas.map((area) => (
             <div

@@ -4,7 +4,7 @@ export const siteProfile: SiteProfile = {
   name: "Yuming Yang",
   headline: "Building the architecture for the new macro regime.",
   summary:
-    'I view markets as complex systems governed by incentives and technological friction. Trained in Mathematics and Economics at Peking University and currently pursuing a Master of Science in Financial Economics at Columbia Business School, my focus is on the "how" - designing research processes that scale beyond intuition.',
+    'I view markets as complex systems shaped by incentives and technological friction. Trained in Mathematics and Economics at Peking University and currently pursuing a Master of Science in Financial Economics at Columbia Business School, my focus is on the "how": building research processes that scale beyond intuition.',
   location: "Shanghai",
   email: "YYang26@gsb.columbia.edu",
   socialLinks: [
@@ -20,19 +20,25 @@ export const siteProfile: SiteProfile = {
   ],
   focusAreas: [
     {
-      title: "Global Macro & Systematic Modeling",
+      title: "Macro Systems and Strategy",
+      heroSummary:
+        "Regime frameworks that turn macro volatility into repeatable playbooks.",
       description:
-        "I build frameworks to decode the world’s economic architecture. By bridging discretionary macro thinking with data-driven modeling, I develop investment strategies that operate with the rigor of a global macro fund.",
+        "I build top-down macro frameworks and pair them with systematic testing so every thesis is measurable, updateable, and deployable. The goal is institutional-grade decision quality with founder-level speed.",
     },
     {
-      title: "Digital Asset Research",
+      title: "Digital Assets and Market Structure",
+      heroSummary:
+        "On-chain and microstructure research to surface mispriced narratives early.",
       description:
-        "I deep-dive into the crypto frontier, leveraging on-chain analytics and protocol-level research to find signal in decentralized markets.",
+        "I treat crypto as both a macro asset class and a technology adoption curve. I combine protocol analysis, on-chain flows, and market structure signals to identify where durable value can emerge before it becomes consensus.",
     },
     {
-      title: "AI Engineering",
+      title: "AI Engineering and Research Ops",
+      heroSummary:
+        "AI-native workflows that compress research cycles from weeks to days.",
       description:
-        "I don't just follow AI - I build with it. I engineer custom tools and automated workflows to turn high-velocity, high-entropy data into structured, testable ideas.",
+        "I design internal tools and agents that automate data collection, synthesis, and hypothesis testing. This turns high-entropy information into a compounding research engine that scales insight without scaling headcount.",
     },
   ],
 };
