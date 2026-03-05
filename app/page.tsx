@@ -15,14 +15,37 @@ export default async function HomePage() {
   const socialHrefByLabel = new Map(
     siteProfile.socialLinks.map((link) => [link.label, link.href]),
   );
+  const socialContactConfig = [
+    { label: "LinkedIn", sourceLabel: "LinkedIn" },
+    { label: "Twitter", sourceLabel: "X / Twitter" },
+    { label: "Telegram", sourceLabel: "Telegram" },
+    { label: "Substack", sourceLabel: "Substack" },
+    { label: "Spotify", sourceLabel: "Spotify" },
+  ];
+  const socialContactLinks = socialContactConfig
+    .map((item) => {
+      const href = socialHrefByLabel.get(item.sourceLabel);
+      if (!href) {
+        return null;
+      }
+
+      return {
+        label: item.label,
+        href,
+        external: true,
+      };
+    })
+    .filter((item): item is { label: string; href: string; external: true } =>
+      Boolean(item),
+    );
 
   const contactLinks = [
-    { label: "Email", href: `mailto:${siteProfile.email}` },
-    { label: "LinkedIn", href: socialHrefByLabel.get("LinkedIn") ?? "#" },
-    { label: "Twitter", href: socialHrefByLabel.get("X / Twitter") ?? "#" },
-    { label: "Telegram", href: socialHrefByLabel.get("Telegram") ?? "#" },
-    { label: "Substack", href: socialHrefByLabel.get("Substack") ?? "#" },
-    { label: "Spotify", href: socialHrefByLabel.get("Spotify") ?? "#" },
+    {
+      label: "Email",
+      href: `mailto:${siteProfile.email}`,
+      external: false,
+    },
+    ...socialContactLinks,
   ];
 
   return (
@@ -112,8 +135,8 @@ export default async function HomePage() {
             <a
               key={item.label}
               href={item.href}
-              target={item.label === "Email" ? undefined : "_blank"}
-              rel={item.label === "Email" ? undefined : "noreferrer"}
+              target={item.external ? "_blank" : undefined}
+              rel={item.external ? "noreferrer" : undefined}
               className="inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-900 transition hover:border-slate-900"
             >
               {item.label}

@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
@@ -8,6 +9,14 @@ const CONTENT_ROOT = path.join(process.cwd(), "content");
 const DEFAULT_WRITING_RSS_FEED = "https://alanyang0.substack.com/feed";
 const DEFAULT_PODCAST_RSS_FEED = "https://anchor.fm/s/10a81feb0/podcast/rss";
 const RSS_REVALIDATE_SECONDS = 60 * 60;
+const CACHE_TTL_MS = RSS_REVALIDATE_SECONDS * 1000;
+
+interface CachedEntries {
+  expiresAt: number;
+  promise: Promise<ContentEntry[]>;
+}
+
+const contentCache = new Map<ContentType, CachedEntries>();
 
 function escapeRegex(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -70,13 +79,22 @@ function stripHtml(value: string): string {
 }
 
 function slugify(value: string): string {
-  const slug = value
-    .toLowerCase()
-    .replace(/['"]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+  const normalized = value.normalize("NFKC").toLowerCase().trim();
+  if (!normalized) {
+    return "";
+  }
 
-  return slug || "entry";
+  const separatorsCollapsed = normalized.replace(/[\p{Separator}\s]+/gu, "-");
+  const stripped = separatorsCollapsed.replace(
+    /[^\p{Letter}\p{Number}-]+/gu,
+    "",
+  );
+
+  return stripped.replace(/-+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+function createShortHash(value: string): string {
+  return createHash("sha1").update(value).digest("hex").slice(0, 10);
 }
 
 function tryParseDate(value?: string): string {
@@ -170,14 +188,17 @@ function extractItemBlocks(xml: string): string[] {
 function deriveSlug(item: string, link: string, fallbackTitle: string): string {
   if (link) {
     try {
-      const pathname = new URL(link).pathname;
+      const pathname = decodeURIComponent(new URL(link).pathname);
       const candidate = pathname
         .split("/")
         .filter(Boolean)
         .pop();
 
       if (candidate) {
-        return slugify(candidate);
+        const candidateSlug = slugify(candidate);
+        if (candidateSlug) {
+          return candidateSlug;
+        }
       }
     } catch {
       // Ignore parse errors and continue with other fallbacks.
@@ -186,28 +207,84 @@ function deriveSlug(item: string, link: string, fallbackTitle: string): string {
 
   const guid = extractFirstTagValue(item, ["guid", "id"]);
   if (guid) {
-    return slugify(guid);
+    const guidSlug = slugify(guid);
+    if (guidSlug) {
+      return guidSlug;
+    }
   }
 
-  return slugify(fallbackTitle);
+  const titleSlug = slugify(fallbackTitle);
+  if (titleSlug) {
+    return titleSlug;
+  }
+
+  return `entry-${createShortHash(`${link}|${guid}|${fallbackTitle}|${item}`)}`;
+}
+
+function buildEntryIdentity(entry: ContentEntry): string {
+  return `${entry.externalUrl ?? ""}|${entry.date}|${entry.title}`;
 }
 
 function ensureUniqueSlugs(entries: ContentEntry[]): ContentEntry[] {
-  const counts = new Map<string, number>();
+  const entriesWithMeta = entries.map((entry, index) => ({
+    entry,
+    index,
+    identity: buildEntryIdentity(entry),
+  }));
+  const groups = new Map<string, typeof entriesWithMeta>();
 
-  return entries.map((entry) => {
-    const count = counts.get(entry.slug) ?? 0;
-    counts.set(entry.slug, count + 1);
+  for (const item of entriesWithMeta) {
+    const group = groups.get(item.entry.slug);
+    if (group) {
+      group.push(item);
+    } else {
+      groups.set(item.entry.slug, [item]);
+    }
+  }
 
-    if (count === 0) {
-      return entry;
+  const usedSlugs = new Set<string>();
+  const resolvedSlugs = new Map<number, string>();
+
+  for (const [baseSlug, group] of groups) {
+    if (group.length === 1) {
+      const item = group[0];
+      let candidate = baseSlug;
+      let attempt = 1;
+
+      while (usedSlugs.has(candidate)) {
+        candidate = `${baseSlug}-${createShortHash(`${item.identity}|${attempt}`)}`;
+        attempt += 1;
+      }
+
+      usedSlugs.add(candidate);
+      resolvedSlugs.set(item.index, candidate);
+      continue;
     }
 
-    return {
-      ...entry,
-      slug: `${entry.slug}-${count + 1}`,
-    };
-  });
+    const stableGroup = [...group].sort(
+      (a, b) => a.identity.localeCompare(b.identity) || a.index - b.index,
+    );
+
+    for (const item of stableGroup) {
+      let attempt = 0;
+      let candidate = "";
+
+      do {
+        const suffixSeed =
+          attempt === 0 ? item.identity : `${item.identity}|${attempt}`;
+        candidate = `${baseSlug}-${createShortHash(suffixSeed)}`;
+        attempt += 1;
+      } while (usedSlugs.has(candidate));
+
+      usedSlugs.add(candidate);
+      resolvedSlugs.set(item.index, candidate);
+    }
+  }
+
+  return entriesWithMeta.map(({ entry, index }) => ({
+    ...entry,
+    slug: resolvedSlugs.get(index) ?? entry.slug,
+  }));
 }
 
 function readMarkdownEntries(type: ContentType): ContentEntry[] {
@@ -339,13 +416,41 @@ async function readRssEntries(type: ContentType): Promise<ContentEntry[]> {
   }
 }
 
-export async function getAllWriting(): Promise<ContentEntry[]> {
-  const remoteEntries = await readRssEntries("writing");
+async function loadEntriesByType(type: ContentType): Promise<ContentEntry[]> {
+  const remoteEntries = await readRssEntries(type);
   if (remoteEntries.length > 0) {
     return remoteEntries;
   }
 
-  return readMarkdownEntries("writing");
+  return readMarkdownEntries(type);
+}
+
+function getAllEntries(type: ContentType): Promise<ContentEntry[]> {
+  const now = Date.now();
+  const cached = contentCache.get(type);
+
+  if (cached && cached.expiresAt > now) {
+    return cached.promise;
+  }
+
+  const refreshPromise = loadEntriesByType(type).catch((error) => {
+    const current = contentCache.get(type);
+    if (current?.promise === refreshPromise) {
+      contentCache.delete(type);
+    }
+    throw error;
+  });
+
+  contentCache.set(type, {
+    expiresAt: now + CACHE_TTL_MS,
+    promise: refreshPromise,
+  });
+
+  return refreshPromise;
+}
+
+export async function getAllWriting(): Promise<ContentEntry[]> {
+  return getAllEntries("writing");
 }
 
 export async function getWritingBySlug(slug: string): Promise<ContentEntry | null> {
@@ -354,12 +459,7 @@ export async function getWritingBySlug(slug: string): Promise<ContentEntry | nul
 }
 
 export async function getAllEpisodes(): Promise<ContentEntry[]> {
-  const remoteEntries = await readRssEntries("podcast");
-  if (remoteEntries.length > 0) {
-    return remoteEntries;
-  }
-
-  return readMarkdownEntries("podcast");
+  return getAllEntries("podcast");
 }
 
 export async function getEpisodeBySlug(

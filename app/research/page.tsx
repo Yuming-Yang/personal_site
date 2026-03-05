@@ -18,7 +18,7 @@ export default function ResearchPage() {
       <SectionHeader
         eyebrow="Research"
         title="Research"
-        subtitle="Selected Financial Economics Research Projects."
+        subtitle="Selected Financial Economicss Research Projects."
       />
 
       <section className="grid gap-5">
