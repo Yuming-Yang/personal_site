@@ -36,8 +36,8 @@ export default function ProjectsPage() {
     <div className="space-y-10">
       <SectionHeader
         eyebrow="Projects"
-        title="Selected Work"
-        subtitle="Data products, market research tooling, and ongoing quantitative initiatives."
+        title="Selected Projects"
+        subtitle="Data products, market research tooling, and quantitative trading frameworks."
       />
 
       <section className="grid gap-5 md:grid-cols-2">

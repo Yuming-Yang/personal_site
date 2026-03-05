@@ -28,25 +28,38 @@ export default async function HomePage() {
   return (
     <div className="space-y-16">
       <AnimatedReveal>
-        <section className="grid gap-6 rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-sm sm:p-8 lg:grid-cols-[1fr_260px]">
-          <div>
+        <section className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-start">
+          <div className="rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-sm sm:p-8">
+            <p className="font-mono text-xs uppercase tracking-[0.14em] text-slate-500">
+              Home
+            </p>
             <h1 className="max-w-4xl text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
               {siteProfile.name}
             </h1>
             <p className="mt-4 max-w-3xl text-sm text-slate-600 sm:text-base">
               {siteProfile.summary}
             </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              <span className="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-700">
+                {siteProfile.headline}
+              </span>
+              <span className="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-700">
+                Based in {siteProfile.location}
+              </span>
+            </div>
           </div>
-          <div className="mx-auto w-full max-w-[260px]">
-            <Image
-              src="/images/avatar.png"
-              alt="Portrait of Yuming Yang"
-              width={260}
-              height={260}
-              className="rounded-2xl border border-slate-200 bg-slate-50 object-cover shadow-sm"
-              priority
-            />
-          </div>
+          <figure className="mx-auto w-full max-w-[300px] rounded-3xl border border-slate-200 bg-white/90 p-3 shadow-sm">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
+              <Image
+                src="/images/avatar.png"
+                alt="Portrait of Yuming Yang"
+                fill
+                sizes="(min-width: 1024px) 300px, (min-width: 640px) 340px, 78vw"
+                className="object-cover object-top"
+                priority
+              />
+            </div>
+          </figure>
         </section>
       </AnimatedReveal>
 
