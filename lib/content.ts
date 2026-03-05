@@ -6,6 +6,7 @@ import { ContentEntry, ContentFrontmatter, ContentType } from "@/lib/types";
 
 const CONTENT_ROOT = path.join(process.cwd(), "content");
 const DEFAULT_WRITING_RSS_FEED = "https://alanyang0.substack.com/feed";
+const DEFAULT_PODCAST_RSS_FEED = "https://anchor.fm/s/10a81feb0/podcast/rss";
 const RSS_REVALIDATE_SECONDS = 60 * 60;
 
 function escapeRegex(value: string): string {
@@ -13,14 +14,50 @@ function escapeRegex(value: string): string {
 }
 
 function decodeXmlEntities(value: string): string {
-  return value
-    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&apos;/g, "'");
+  let decoded = value.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1");
+
+  // Run multiple passes to handle nested encodings (e.g. &amp;#24180;).
+  for (let i = 0; i < 3; i += 1) {
+    const next = decoded
+      .replace(/&amp;/g, "&")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&apos;/g, "'")
+      .replace(/&#(\d+);/g, (_, dec) => {
+        const codePoint = Number.parseInt(dec, 10);
+        if (!Number.isFinite(codePoint)) {
+          return `&#${dec};`;
+        }
+
+        try {
+          return String.fromCodePoint(codePoint);
+        } catch {
+          return `&#${dec};`;
+        }
+      })
+      .replace(/&#x([0-9a-f]+);/gi, (_, hex) => {
+        const codePoint = Number.parseInt(hex, 16);
+        if (!Number.isFinite(codePoint)) {
+          return `&#x${hex};`;
+        }
+
+        try {
+          return String.fromCodePoint(codePoint);
+        } catch {
+          return `&#x${hex};`;
+        }
+      });
+
+    if (next === decoded) {
+      break;
+    }
+
+    decoded = next;
+  }
+
+  return decoded;
 }
 
 function stripHtml(value: string): string {
@@ -228,7 +265,7 @@ function resolveRssFeedUrl(type: ContentType): string {
     return process.env.WRITING_RSS_FEED_URL ?? DEFAULT_WRITING_RSS_FEED;
   }
 
-  return process.env.PODCAST_RSS_FEED_URL ?? "";
+  return process.env.PODCAST_RSS_FEED_URL ?? DEFAULT_PODCAST_RSS_FEED;
 }
 
 async function readRssEntries(type: ContentType): Promise<ContentEntry[]> {

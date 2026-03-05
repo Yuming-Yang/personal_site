@@ -1,4 +1,4 @@
-# Personal Website v2 (Next.js + Vercel)
+# Personal Website (Next.js + Vercel)
 
 Modern, Vercel-first rebuild of the personal site using Next.js App Router, TypeScript, Tailwind CSS v4, and shadcn-style UI primitives.
 
@@ -40,7 +40,7 @@ Create `.env.local` with:
 ```bash
 NEXT_PUBLIC_SITE_URL=https://yumingyang.com
 WRITING_RSS_FEED_URL=https://alanyang0.substack.com/feed
-PODCAST_RSS_FEED_URL=https://your-podcast-rss-feed.xml
+PODCAST_RSS_FEED_URL=https://anchor.fm/s/10a81feb0/podcast/rss
 ```
 
 Notes:
@@ -78,8 +78,7 @@ npm run build
    - `www.yumingyang.net`
 8. Set `yumingyang.com` as the primary domain in Vercel.
 9. Update DNS records to Vercel targets and enable HTTPS.
-10. Validate redirects:
-    - legacy path aliases (for example `/connect` -> `/contact`)
+10. Validate canonical host redirects:
     - alternate domains (`yumingyang.net`, `www.yumingyang.net`, `www.yumingyang.com`) -> `https://yumingyang.com`
 
 ## SEO and Accessibility Checklist
@@ -93,12 +92,10 @@ npm run build
 - Keyboard-friendly mobile navigation
 - Visible focus styles and high-contrast palette
 
-## Migration Notes
+## Project Notes
 
-- Legacy Jekyll code remains in `Github/Yuming-Yang.github.io` as archive/reference.
-- This v2 app is the deployment target.
+- This app is the deployment target.
 - Missing data is intentionally marked with `TODO` / `PLACEHOLDER` labels to avoid inventing credentials.
-- Asset hydration note: original legacy profile/favicon binaries may need manual restoration; see `public/images/ASSET_MIGRATION_TODO.md`.
 
 ## Final Verification Checklist
 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { AnimatedReveal } from "@/components/sections/AnimatedReveal";
 import { ContentCard } from "@/components/sections/ContentCard";
@@ -11,6 +12,18 @@ export default async function HomePage() {
   const episodes = await getAllEpisodes();
   const latestWriting = writing[0];
   const latestEpisode = episodes[0];
+  const socialHrefByLabel = new Map(
+    siteProfile.socialLinks.map((link) => [link.label, link.href]),
+  );
+
+  const contactLinks = [
+    { label: "Email", href: `mailto:${siteProfile.email}` },
+    { label: "LinkedIn", href: socialHrefByLabel.get("LinkedIn") ?? "#" },
+    { label: "Twitter", href: socialHrefByLabel.get("X / Twitter") ?? "#" },
+    { label: "Telegram", href: socialHrefByLabel.get("Telegram") ?? "#" },
+    { label: "Substack", href: socialHrefByLabel.get("Substack") ?? "#" },
+    { label: "Spotify", href: socialHrefByLabel.get("Spotify") ?? "#" },
+  ];
 
   return (
     <div className="space-y-16">
@@ -54,6 +67,29 @@ export default async function HomePage() {
               <p className="mt-2 text-sm text-slate-600">{area.description}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section>
+        <SectionHeader eyebrow="Connect" title="Contact and Channels" />
+        <div className="flex flex-wrap gap-3">
+          {contactLinks.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              target={item.label === "Email" ? undefined : "_blank"}
+              rel={item.label === "Email" ? undefined : "noreferrer"}
+              className="inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-900 transition hover:border-slate-900"
+            >
+              {item.label}
+            </a>
+          ))}
+          <Link
+            href="/contact"
+            className="inline-flex items-center rounded-full border border-slate-900 bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
+          >
+            Full Contact Page
+          </Link>
         </div>
       </section>
 

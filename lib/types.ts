@@ -40,7 +40,7 @@ export interface ProjectItem {
   notes?: string;
 }
 
-export interface PublicationItem {
+export interface ResearchItem {
   title: string;
   venue: string;
   date: string;

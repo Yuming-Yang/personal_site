@@ -21,16 +21,6 @@ const nextConfig: NextConfig = {
         destination: "https://yumingyang.com/:path*",
         permanent: true,
       },
-      { source: "/connect", destination: "/contact", permanent: true },
-      { source: "/contact.html", destination: "/contact", permanent: true },
-      { source: "/about.html", destination: "/about", permanent: true },
-      { source: "/podcast.html", destination: "/podcast", permanent: true },
-      { source: "/year-archive", destination: "/writing", permanent: true },
-      {
-        source: "/wordpress/blog-posts",
-        destination: "/writing",
-        permanent: true,
-      },
     ];
   },
 };

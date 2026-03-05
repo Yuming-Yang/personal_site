@@ -3,26 +3,26 @@ import type { Metadata } from "next";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { publications } from "@/content/publications";
+import { research } from "@/content/research";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Publications",
-  description: "Publications and research outputs.",
-  path: "/publications",
+  title: "Research",
+  description: "Research notes and outputs.",
+  path: "/research",
 });
 
-export default function PublicationsPage() {
+export default function ResearchPage() {
   return (
     <div className="space-y-10">
       <SectionHeader
-        eyebrow="Publications"
-        title="Research and Publications"
-        subtitle="This section is structured and ready for publication records as they are finalized."
+        eyebrow="Research"
+        title="Research"
+        subtitle="This section is structured and ready for research records as they are finalized."
       />
 
       <section className="grid gap-5">
-        {publications.map((item) => (
+        {research.map((item) => (
           <Card key={item.title}>
             <CardHeader>
               <div className="flex items-center justify-between gap-4">
