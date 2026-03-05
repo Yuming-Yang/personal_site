@@ -23,14 +23,16 @@ export default function ResumePage() {
           <CardTitle>Education</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3 text-sm text-slate-700">
-          <p>
-            <span className="font-medium">Columbia Business School</span> - M.S.
-            Financial Economics (Expected 2027)
-          </p>
-          <p>
-            <span className="font-medium">Peking University</span> - B.S.
-            Mathematics & Economics (2020 - 2024)
-          </p>
+          <ul className="list-disc space-y-2 pl-5">
+            <li>
+              <span className="font-medium">Columbia Business School</span> -
+              M.S. Financial Economics (Expected 2027)
+            </li>
+            <li>
+              <span className="font-medium">Peking University</span> - B.S.
+              Mathematics & Economics (2020 - 2024)
+            </li>
+          </ul>
         </CardContent>
       </Card>
 

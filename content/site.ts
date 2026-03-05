@@ -30,7 +30,7 @@ export const siteProfile: SiteProfile = {
         "I treat crypto as a core macro asset class, supplemented by deep-dives into on-chain data for specific trading signals. I stay in the weeds of Web3 - tracking protocol shifts and emerging startups to find the next structural edge.",
     },
     {
-      title: "AI Tooling",
+      title: "AI Engineering",
       summary:
         "I don't just follow AI; I build with it. I engineer custom tools and automated workflows to turn high-entropy data into structured, testable ideas.",
     },
