@@ -18,7 +18,7 @@ export default function ResearchPage() {
       <SectionHeader
         eyebrow="Research"
         title="Research"
-        subtitle="This section is structured and ready for research records as they are finalized."
+        subtitle="Selected research projects from Wharton, UChicago Booth, and Peking University."
       />
 
       <section className="grid gap-5">
