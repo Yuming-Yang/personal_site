@@ -29,7 +29,7 @@ export default function ResumePage() {
           </p>
           <p>
             <span className="font-medium">Peking University</span> - B.S.
-            Mathematics & Economics (2024)
+            Mathematics & Economics (2020 - 2024)
           </p>
         </CardContent>
       </Card>
@@ -39,32 +39,19 @@ export default function ResumePage() {
           <CardTitle>Experience</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3 text-sm text-slate-700">
-          <p>
-            TODO: confirm roles, organizations, and dates for professional
-            experience entries.
-          </p>
-          <p>
-            PLACEHOLDER: add 2-4 quantified impact bullets for each confirmed
-            role.
-          </p>
+          <ul className="list-disc space-y-2 pl-5">
+            <li>
+              <span className="font-medium">NextGen Digital Venture</span> -
+              Intern (Dec 2025 - Now)
+            </li>
+            <li>
+              <span className="font-medium">Five Dimensions Energy</span> -
+              Quantitative Research Intern (June 2025 - August 2025)
+            </li>
+          </ul>
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Skills & Interests</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3 text-sm text-slate-700">
-          <p>
-            Crypto research, macro investing, quantitative finance, and market
-            intelligence tooling.
-          </p>
-          <p>
-            TODO: confirm technical stack and research methods to include in
-            final resume.
-          </p>
-        </CardContent>
-      </Card>
     </div>
   );
 }
